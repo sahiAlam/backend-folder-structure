@@ -1,10 +1,10 @@
 import { User } from "../models/user.js";
 
-export const getHomeRoute = (req, res) => {
+const getHomeRoute = (req, res) => {
   res.send("Nice Working");
 };
 
-export const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   const users = await User.find({});
   res.status(200).json({
     status: true,
@@ -12,8 +12,8 @@ export const getAllUsers = async (req, res) => {
   });
 };
 
-export const createUser = async (req, res) => {
-  const { name, email, password } = req.body();
+const createUser = async (req, res) => {
+  const { name, email, password } = req.body;
   console.log(req.body);
 
   await User.create({
@@ -28,7 +28,7 @@ export const createUser = async (req, res) => {
   });
 };
 
-export const getUserById = async (req, res) => {
+const getUserById = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
 
@@ -38,7 +38,7 @@ export const getUserById = async (req, res) => {
   });
 };
 
-export const updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
 
@@ -48,7 +48,7 @@ export const updateUser = async (req, res) => {
   });
 };
 
-export const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
 
@@ -58,4 +58,13 @@ export const deleteUser = async (req, res) => {
     success: true,
     message: "Deleted user",
   });
+};
+
+export {
+  getHomeRoute,
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
 };
